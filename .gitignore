@@ -1,0 +1,29 @@
+# Secrets
+*.pem
+*.key
+service-account.json
+*serviceAccount*.json
+device/.env
+device/service-account.json
+web/.env.local
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+device/captures/
+device/offline_queue.jsonl
+
+# Node / Next.js
+node_modules/
+web/node_modules/
+.next/
+web/.next/
+out/
+web/out/
+
+# OS
+.DS_Store
+Thumbs.db
+firebase-debug.log

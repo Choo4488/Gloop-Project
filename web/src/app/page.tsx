@@ -1,9 +1,5 @@
-﻿"use client";
-
-import dynamic from "next/dynamic";
-
-const HomeClient = dynamic(() => import("./home-client"), { ssr: false });
+import { redirect } from "next/navigation";
 
 export default function Page() {
-  return <HomeClient />;
+  redirect("/login");
 }

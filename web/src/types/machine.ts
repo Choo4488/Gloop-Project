@@ -27,3 +27,18 @@ export type SessionDoc = {
   endedAt: Date | null;
   lastBottleAt: Date | null;
 };
+
+export type SessionEventDoc = {
+  sessionId: string;
+  type: "ACCEPTED" | "REJECTED";
+  bottleSize: BottleSize | null;
+  scoreDelta: number;
+  source: string | null;
+  createdAt: Date | null;
+};
+
+export type TodaySummary = {
+  sessions: number;
+  bottles: number;
+  score: number;
+};
