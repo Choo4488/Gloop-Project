@@ -1,0 +1,28 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // User avatar: fixed path avatars/{uid} (no extension), always overwrites
+    match /avatars/{uid} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Bottle captures:
+    //   labels/ — written by Cloud Function (Admin SDK, bypasses rules)
+    //   caps/   — written by Slave ESP32 directly via Storage REST API (Auth token)
+    // {allPaths=**} covers nested subfolders (labels/ and caps/).
+    // Only machine accounts (email pattern machine-*@*) may read or write.
+    match /captures/{machineId}/{sessionId}/{allPaths=**} {
+      allow read: if request.auth != null
+        && request.auth.token.email is string
+        && request.auth.token.email.matches('^machine-.*@.*$');
+      allow write: if request.auth != null
+        && request.auth.token.email is string
+        && request.auth.token.email.matches('^machine-.*@.*$');
+    }
+  }
+}

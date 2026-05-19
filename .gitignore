@@ -1,0 +1,48 @@
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+firebase-debug.log
+
+# Env/secrets
+.env
+.env.*
+!.env.example
+!.env*.example
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+web/*.tsbuildinfo
+
+# Python / AI server — track source, ignore secrets + large binaries
+ai_server/.env
+ai_server/.venv/
+ai_server/__pycache__/
+ai_server/*.json
+ai_server/models/
+ai_server/training_results/
+ai_server/cap/
+ai_server/label/
+edge/.venv/
+edge/.venv2/
+edge/__pycache__/
+*.pyc
+
+# ESP32
+esp32/config.h
+esp32/config_slave.h
+
+# Firebase local cache/artifacts
+.firebase/
+
+# Root-level node_modules (puppeteer export scripts)
+node_modules/
+package-lock.json
+
+# ESP32 build artifacts
+esp32/*/build/
+
